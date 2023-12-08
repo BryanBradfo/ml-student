@@ -593,16 +593,6 @@ def gen_image_with_integrated_signals(batch_size, p):
     
     return full_target, partial_target, integrated_signals 
 
-#% Générations des alphas, betas :
-if 'alphas.pt' not in os.listdir('data'):
-    alphas = 0.1 + 2*0.1*torch.rand((1,1,64,64))
-    betas = -1 + 2*torch.rand((1,1,64,64))
-    torch.save(alphas,'alphas.pt')
-    torch.save(betas,'betas.pt')
-        
-alphas = torch.load('data/alphas.pt')
-betas = torch.load('data/betas.pt')
-
 def gen_inputs_and_uncal_measurements_train(batch_size, p=0.2):
     image = make_batch_with_cond(batch_size, 0.0003, 0.0003 ,0.0007, square=0.)
     inputs = image[:,[0],:,:] 
